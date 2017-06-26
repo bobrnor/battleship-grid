@@ -35,13 +35,48 @@ func (g *Grid) IsEmpty() bool {
 	return true
 }
 
+func (g *Grid) IsFull() bool {
+	for x := uint(0); x < 10; x++ {
+		for y := uint(0); y < 10; y++ {
+			if !g.Get(x, y) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func (g *Grid) Print() {
 	for x := uint(0); x < 10; x++ {
 		for y := uint(0); y < 10; y++ {
 			if g.Get(x, y) {
 				fmt.Printf(" ◉ ")
 			} else {
-				fmt.Printf(" ○ ")
+				fmt.Printf(" ◯ ")
+			}
+		}
+		fmt.Printf("\n")
+	}
+	fmt.Printf("\n\n")
+}
+
+func (g *Grid) PrintWithHitsOverlay(hits *Grid) {
+	for x := uint(0); x < 10; x++ {
+		for y := uint(0); y < 10; y++ {
+			var shipString string
+			var emptyString string
+			if hits.Get(x, y) {
+				shipString = " \x1b[31;1m◉\x1b[30;1m "
+				emptyString = " \x1b[31;1m◯\x1b[30;1m "
+			} else {
+				shipString = " \x1b[32;1m◉\x1b[30;1m "
+				emptyString = " \x1b[32;1m◯\x1b[30;1m "
+			}
+
+			if g.Get(x, y) {
+				fmt.Printf(shipString)
+			} else {
+				fmt.Printf(emptyString)
 			}
 		}
 		fmt.Printf("\n")

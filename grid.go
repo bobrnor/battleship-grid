@@ -66,11 +66,11 @@ func (g *Grid) PrintWithHitsOverlay(hits *Grid) {
 			var shipString string
 			var emptyString string
 			if hits.Get(x, y) {
-				shipString = " \x1b[31;1m◉\x1b[30;1m "
-				emptyString = " \x1b[31;1m◯\x1b[30;1m "
+				shipString = " \x1b[31;1m◉\x1b[37;1m "
+				emptyString = " \x1b[31;1m◯\x1b[37;1m "
 			} else {
-				shipString = " \x1b[32;1m◉\x1b[30;1m "
-				emptyString = " \x1b[32;1m◯\x1b[30;1m "
+				shipString = " \x1b[32;1m◉\x1b[37;1m "
+				emptyString = " \x1b[32;1m◯\x1b[37;1m "
 			}
 
 			if g.Get(x, y) {
